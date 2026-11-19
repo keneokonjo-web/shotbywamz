@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Shot by Wamz — Concept 2 · Index (off-white)</title>
+<meta name="description" content="Shot by Wamz — fashion, portrait and nightlife photographer based in Lagos.">
+<link rel="stylesheet" href="common.css">
+<style>
+@font-face{font-family:Cormorant;src:url(fonts/cormorant-500.woff2) format('woff2');font-weight:500;font-display:swap}
+@font-face{font-family:Cormorant;src:url(fonts/cormorant-500i.woff2) format('woff2');font-weight:500;font-style:italic;font-display:swap}
+@font-face{font-family:Fraktur;src:url(fonts/fraktur-700.woff2) format('woff2');font-weight:700;font-display:swap}
+:root{--bg:#f0f0ee;--fg:#1c1c1b;--line:#1c1c1b;--accent:#8c2f1b;--ease:cubic-bezier(.22,1,.36,1)}
+body{background:var(--bg);color:var(--fg);font-family:Cormorant,Georgia,serif;font-weight:500;font-size:1.15rem;overflow-x:hidden}
+.up{text-transform:uppercase;letter-spacing:.04em}
+/* hero */
+.hero{height:100vh;min-height:640px;display:grid;grid-template-rows:auto auto 1fr}
+.mark{font-family:Fraktur,serif;font-weight:700;font-size:clamp(7rem,38vh,22rem);line-height:.9;letter-spacing:-.01em;color:#3c3c3b;padding:0 0 0 .2rem;margin:0;overflow:hidden;height:clamp(9rem,38vh,24rem);white-space:nowrap}
+.mark span{display:inline-block;transform:translateY(105%);animation:rise 1.3s var(--ease) .2s forwards}
+@keyframes rise{to{transform:none}}
+.bar{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:.85rem 1.5rem;border-bottom:1px solid var(--fg);border-top:1px solid transparent;font-size:1.05rem}
+.bar nav{display:flex;gap:1.5rem;justify-content:flex-end}
+.bar a:hover{font-style:italic}
+.bar .l{display:flex;gap:2.5rem}
+.split{display:grid;grid-template-columns:1fr 1fr;min-height:0}
+.idx{position:relative;display:flex;flex-direction:column;justify-content:flex-end;align-items:flex-end;min-height:0}
+.idx ol{list-style:none;width:min(100%,20rem);text-align:center}
+.idx li{border-top:1px solid var(--fg);padding:.35rem 0;cursor:pointer;transition:opacity .3s;opacity:.38}
+.idx li small{display:block;font-style:italic;opacity:.75;font-size:.95rem}
+.idx li.on{opacity:1}
+.idx li:last-child{border-bottom:0}
+.stack{width:min(100%,20rem);height:22px;background:repeating-linear-gradient(var(--fg) 0 1px,transparent 1px 6px);opacity:.8}
+.pic{position:relative;overflow:hidden;border-left:1px solid var(--fg);background:#ddd}
+.pic img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transform:scale(1.05);transition:opacity 1s ease,transform 4s ease}
+.pic img.on{opacity:1;transform:none}
+@media(max-width:800px){
+ .hero{height:auto}
+ .mark{height:7.2rem;font-size:8rem}
+ .bar{grid-template-columns:1fr auto;padding:.7rem 1rem}.bar .c{display:none}.bar .l span+span{display:none}
+ .split{grid-template-columns:1fr;height:78vh}
+ .idx{order:2;display:none}.pic{border-left:0;order:1}
+}
+/* generic */
+section{padding:clamp(4rem,8vw,8rem) clamp(1.2rem,3vw,3rem)}
+.cap{font-size:.95rem;letter-spacing:.14em;text-transform:uppercase;display:flex;justify-content:space-between;border-bottom:1px solid var(--fg);padding-bottom:.8rem;margin-bottom:2rem}
+h2{font-weight:500;font-size:clamp(2.6rem,7.5vw,8rem);line-height:.95;letter-spacing:-.025em}
+h2 em{font-style:italic}
+/* work index */
+.rows{border-top:1px solid var(--fg);margin-top:2.5rem}
+.row{display:grid;grid-template-columns:4rem 1fr auto 8rem;align-items:baseline;gap:1rem;padding:1.3rem 0;border-bottom:1px solid var(--fg);transition:padding .5s var(--ease),background .3s}
+.row:hover{padding-left:1.2rem}
+.row h3{font-weight:500;font-size:clamp(1.8rem,4.2vw,4.2rem);letter-spacing:-.02em;line-height:1}
+.row span{font-size:1rem;font-style:italic}
+.row .y{text-align:right}
+@media(max-width:700px){.row{grid-template-columns:2.5rem 1fr}.row .c,.row .y{display:none}}
+.peek{position:fixed;left:0;top:0;width:min(22vw,300px);aspect-ratio:3/4;pointer-events:none;z-index:30;opacity:0;transform:translate(-50%,-50%) scale(.85);transition:opacity .25s,transform .35s var(--ease);overflow:hidden}
+.peek.on{opacity:1;transform:translate(-50%,-50%) scale(1)}
+.peek img{width:100%;height:100%;object-fit:cover}
+@media(hover:none){.peek{display:none}}
+/* wall */
+.wallsec{background:var(--fg);color:var(--bg);--line:var(--bg)}
+.wallsec .cap{border-color:var(--bg)}
+.sheet{display:grid;grid-template-columns:repeat(6,1fr);gap:.6rem;margin-top:3rem}
+.sheet figure{position:relative;grid-column:span 2;aspect-ratio:4/5;overflow:hidden}
+.sheet figure:nth-child(1){grid-column:span 3;aspect-ratio:1/1}
+.sheet figure:nth-child(4){grid-column:span 3;aspect-ratio:1/1}
+.sheet img{width:100%;height:100%;object-fit:cover;filter:grayscale(1);transition:filter .8s,transform 1.4s var(--ease)}
+.sheet figure:hover img{filter:none;transform:scale(1.05)}
+.sheet figcaption{position:absolute;left:.7rem;top:.5rem;font-style:italic;color:#fff;mix-blend-mode:difference}
+.wallsec p{max-width:30rem;margin-top:1.5rem;opacity:.8;font-size:1.25rem;line-height:1.35}
+@media(max-width:700px){.sheet{grid-template-columns:1fr 1fr}.sheet figure,.sheet figure:nth-child(n){grid-column:span 1;aspect-ratio:4/5}}
+/* about */
+.about{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center}
+.about img{aspect-ratio:4/5;object-fit:cover;width:100%}
+.about p{font-size:1.4rem;line-height:1.4;max-width:30rem;margin-top:1.5rem}
+.ph{font-style:italic;opacity:.55}
+@media(max-width:800px){.about{grid-template-columns:1fr}}
+/* book */
+.book{display:grid;grid-template-columns:1fr 1.2fr;gap:4rem}
+.book .a{margin-top:1.5rem;font-style:italic;font-size:1.3rem;color:var(--accent)}
+@media(max-width:900px){.book{grid-template-columns:1fr;gap:2rem}}
+.bk label{font-family:Cormorant,serif;font-weight:500;font-size:.9rem}
+.bk-submit{font-family:Cormorant,serif;font-size:1rem;background:var(--fg);color:var(--bg)}
+.bk-submit:hover{background:transparent;color:var(--fg)}
+footer{border-top:1px solid var(--fg);padding:2rem 1.5rem 1.5rem;display:grid;grid-template-columns:1fr auto 1fr;gap:1rem;align-items:end}
+footer .f{font-family:Fraktur,serif;font-size:clamp(3rem,10vw,9rem);line-height:.8}
+footer div:last-child{text-align:right}
+@media(max-width:700px){footer{grid-template-columns:1fr;text-align:left}footer div:last-child{text-align:left}}
+</style>
+</head>
+<body>
+<main>
+<div class="hero" id="top">
+  <h1 class="mark" aria-label="Wamz"><span>Wamz</span></h1>
+  <div class="bar up">
+    <div class="l"><span>Shot by Wamz,</span><span style="text-transform:none">Lagos</span></div>
+    <div class="c" style="text-transform:none">Fashion, Portrait &amp; Night Photography</div>
+    <nav><a href="#work">Work</a><a href="#about">About</a><a href="#book">Contact</a></nav>
+  </div>
+  <div class="split">
+    <div class="idx"><ol id="idx"></ol><div class="stack" aria-hidden="true"></div></div>
+    <div class="pic" id="pic" aria-live="off"></div>
+  </div>
+</div>
+
+<section id="work">
+  <div class="cap up"><span>Work</span><span id="count"></span></div>
+  <h2 data-reveal>Selected <em>series</em></h2>
+  <div class="rows" id="rows"></div>
+</section>
+
+<section class="wallsec" id="wall">
+  <div class="cap up"><span>Personal project</span><span>Ongoing</span></div>
+  <h2 data-reveal>Wamz's <em>Wall</em></h2>
+  <p data-reveal id="wb"></p>
+  <div class="sheet" id="sheet"></div>
+</section>
+
+<section id="about">
+  <div class="about">
+    <img src="img/mono-portrait.jpg" alt="Black and white portrait" loading="lazy" data-reveal>
+    <div>
+      <div class="cap up"><span>About</span><span>Lagos</span></div>
+      <h2 data-reveal>Shot by <em>Wamz</em></h2>
+      <p data-reveal>Lagos-based photographer working across clothing brands, portraits and nightlife. <span class="ph">[Biography to come — Wamz to supply.]</span></p>
+    </div>
+  </div>
+</section>
+
+<section id="book">
+  <div class="book">
+    <div>
+      <div class="cap up"><span>Booking</span><span>2026</span></div>
+      <h2 data-reveal>Book your <em>December</em></h2>
+      <p class="a" id="avail"></p>
+    </div>
+    <div id="booking-form"></div>
+  </div>
+</section>
+</main>
+<footer>
+  <div class="up" style="font-size:.95rem;line-height:1.6">Shot by Wamz<br><span id="wa"></span><br><span id="em"></span></div>
+  <div class="f" aria-hidden="true">Wamz</div>
+  <div style="font-size:.95rem;line-height:1.6">© <span data-year></span> · Concept 2 of 4<br><span id="ig"></span></div>
+</footer>
+<div class="peek" id="peek"><img alt=""></div>
+
+<script src="data.js"></script>
+<script>
+const W=WAMZ,P=W.photos,$=s=>document.querySelector(s);
+/* hero index + image (auto-cycles, hover/click to choose) */
+const idx=$('#idx'),pic=$('#pic');let cur=-1,timer;
+idx.innerHTML=P.map((p,i)=>`<li data-i="${i}" tabindex="0"><span class="up">${p.title}</span><small>${p.cat}</small></li>`).join('');
+pic.innerHTML=P.map(p=>`<img src="${p.src}" alt="${p.alt}">`).join('');
+const lis=[...idx.children],imgs=[...pic.children];
+function show(i){cur=i;lis.forEach((l,k)=>l.classList.toggle('on',k===i));imgs.forEach((m,k)=>m.classList.toggle('on',k===i))}
+function auto(){clearInterval(timer);timer=setInterval(()=>show((cur+1)%P.length),3200)}
+lis.forEach((l,i)=>{const go=()=>{show(i);auto()};l.onmouseenter=go;l.onfocus=go;l.onclick=go});
+show(0);auto();
+/* index rows with cursor-following preview */
+$('#count').textContent=P.length+' frames';
+$('#rows').innerHTML=P.map((p,i)=>`<a class="row" href="${p.src}" data-i="${i}" data-reveal><span>${String(i+1).padStart(2,'0')}</span><h3>${p.title}</h3><span class="c">${p.cat}</span><span class="y">2026</span></a>`).join('');
+const peek=$('#peek'),pi=peek.querySelector('img');
+document.querySelectorAll('.row').forEach(r=>{
+  r.onmouseenter=()=>{pi.src=P[r.dataset.i].s;peek.classList.add('on')};
+  r.onmouseleave=()=>peek.classList.remove('on');
+  r.onmousemove=e=>{peek.style.left=e.clientX+'px';peek.style.top=e.clientY+'px'};
+});
+/* wall */
+$('#wb').textContent=W.wall.blurb;
+$('#sheet').innerHTML=W.wall.ids.map((id,i)=>{const p=W.photo(id);return `<figure data-reveal style="--d:${i*.06}s"><img src="${p.s}" alt="${p.alt}" loading="lazy"><figcaption>${String(i+1).padStart(2,'0')}</figcaption></figure>`}).join('');
+$('#avail').textContent=W.availability;
+$('#wa').textContent=W.contact.whatsapp;$('#em').textContent=W.contact.email;$('#ig').textContent=W.contact.instagram;
+</script>
+<script src="common.js"></script>
+</body>
+</html>
