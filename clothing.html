@@ -8,46 +8,21 @@
 <link rel="stylesheet" href="site.css">
 <style>
 .chap{padding:clamp(3rem,7vw,6rem) var(--pad) 0}
-.chead{display:grid;grid-template-columns:5rem 1fr auto;gap:1rem;align-items:baseline;border-top:1px solid var(--fg);padding-top:1rem;margin-bottom:1.6rem}
-.chead h2{font-weight:500;font-size:clamp(1.8rem,4.4vw,3.6rem);letter-spacing:-.04em;line-height:1}
-.chead .mono{color:var(--mute)}
-@media(max-width:700px){.chead{grid-template-columns:3rem 1fr}.chead .r{grid-column:2}}
-
-/* A — numbered lookbook grid */
+.chap h2{font-weight:500;font-size:clamp(1.8rem,4.4vw,3.6rem);letter-spacing:-.04em;line-height:1;margin-bottom:1.4rem}
 .lk{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
 .lk .ph{aspect-ratio:4/5!important}
-.lk .ph .n{position:absolute;left:.7rem;top:.55rem;color:#fff;mix-blend-mode:difference;z-index:2;pointer-events:none}
-.lk .ph .c{position:absolute;left:.7rem;bottom:.55rem;color:#fff;mix-blend-mode:difference;z-index:2;pointer-events:none}
-@media(max-width:700px){.lk{grid-template-columns:1fr 1fr}}
-
-/* B — large looks with vertical spec text */
-.spec{display:grid;grid-template-columns:1fr 1fr;gap:clamp(1rem,3vw,3rem)}
-.spec>div{display:grid;grid-template-columns:auto 1fr;gap:.9rem;align-items:start}
-.spec>div:nth-child(even){margin-top:clamp(2rem,9vw,9rem)}
-.spec .v{writing-mode:vertical-rl;transform:rotate(180deg);color:var(--mute);justify-self:end;max-height:100%;white-space:nowrap}
-.spec .big{font-weight:500;font-size:clamp(2.4rem,5vw,4.4rem);letter-spacing:-.05em;line-height:1;margin-bottom:.6rem}
-@media(max-width:700px){.spec{grid-template-columns:1fr}.spec>div:nth-child(even){margin-top:0}}
-
-/* C — diptych */
-.dip{display:grid;gap:6px;align-items:end}
-.dip figure{width:100%}
-@media(max-width:700px){.dip{grid-template-columns:1fr!important}}
-
-/* D — strip of selects */
-.sel{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;align-items:start}
-.sel .l{grid-column:span 2}
-.sel figcaption{margin-top:.4rem;color:var(--mute)}
-@media(max-width:700px){.sel{grid-template-columns:1fr}.sel .l{grid-column:auto}}
+.lk .ph.l{grid-column:span 2;aspect-ratio:3/2!important}
+.lk .ph .n,.lk .ph .c{position:absolute;left:.7rem;color:#fff;mix-blend-mode:difference;z-index:2;pointer-events:none}
+.lk .ph .n{top:.55rem}.lk .ph .c{bottom:.55rem}
+@media(max-width:700px){.lk{grid-template-columns:1fr 1fr}.lk .ph.l{grid-column:1/-1}}
+.more{display:flex;justify-content:flex-end;align-items:center;margin-top:1.6rem;border-top:1px solid var(--fg);padding-top:.8rem}
+.more a{font-family:"Plex Mono",monospace;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;transition:color .3s}
+.more a:hover{color:var(--accent)}
 </style>
 </head>
 <body data-page="clothing">
 <main>
-  <section class="pg">
-    <div class="lab mono">Gallery 02</div>
-    <h1>Clothing Brands</h1>
-    <div class="meta mono"><span id="cnt"></span><span>Lookbooks &amp; campaigns</span><span>Lagos</span></div>
-    <nav class="jump mono" id="jump" aria-label="Brands"></nav>
-  </section>
+  <section class="pg"><h1>Clothing Brands</h1></section>
   <div id="chapters"></div>
   <a class="next" href="events.html"><span>Next gallery</span>Events →</a>
 </main>
@@ -55,23 +30,14 @@
 <script src="data.js"></script>
 <script src="site.js"></script>
 <script>
-const G = WAMZ.groups.filter(g => g.cat === 'clothing');
 const n2 = n => String(n).padStart(2, '0');
-document.getElementById('cnt').textContent = G.reduce((a, g) => a + g.ids.length, 0) + ' frames · ' + G.length + ' chapters';
-document.getElementById('jump').innerHTML = G.map((g, i) => `<a href="#b${i}">${n2(i + 1)} ${g.name}</a>`).join('');
-
-/* each chapter picks a different layout so the page never reads as one cluster */
-const layouts = {
-  0: g => `<div class="lk" data-set>${g.ids.map((id, i) => `<div class="ph" data-lb="${id}" tabindex="0"><span class="n mono">${n2(i + 1)}</span><img src="${src(id)}" alt="${alt(id)}" loading="lazy" width="${P[id].w}" height="${P[id].h}"><span class="c mono">Look ${n2(i + 1)}</span></div>`).join('')}</div>`,
-  1: g => `<div class="spec" data-set>${g.ids.map((id, i) => `<div data-reveal><span class="v mono">Look ${n2(i + 1)} — ${g.sub} — Lagos 2026</span><div><div class="big">${n2(i + 1)}</div>${fig(id)}</div></div>`).join('')}</div>`,
-  2: g => `<div class="dip" data-set style="grid-template-columns:${g.ids.map(id => (P[id].w / P[id].h).toFixed(3) + 'fr').join(' ')}">${g.ids.map(id => fig(id)).join('')}</div>`,
-  3: g => `<div class="sel" data-set>${g.ids.map((id, i) => `<figure class="${P[id].w > P[id].h ? 'l' : ''}">${fig(id)}<figcaption class="mono">Look ${n2(i + 1)}</figcaption></figure>`).join('')}</div>`
-};
-document.getElementById('chapters').innerHTML = G.map((g, i) => `
-  <section class="chap" id="b${i}">
-    <div class="chead" data-reveal><span class="mono">${n2(i + 1)}</span><h2>${g.name}</h2><span class="mono r">${g.sub} · ${g.ids.length} ${g.ids.length > 1 ? 'looks' : 'look'}</span></div>
-    ${layouts[i % 4](g)}
-  </section>`).join('');
+document.getElementById('chapters').innerHTML = WAMZ.brands.map(b => {
+  const shown = b.ids.slice(0, 6);
+  return `<section class="chap" id="b${b.n}">
+    <h2 data-reveal>Brand ${n2(b.n)}</h2>
+    <div class="lk" data-set>${shown.map((id, i) => `<div class="ph ${P[id].w > P[id].h ? 'l' : ''}" data-lb="${id}" tabindex="0"><span class="n mono">${n2(i + 1)}</span><img src="${src(id)}" alt="${alt(id)}" loading="lazy" width="${P[id].w}" height="${P[id].h}"><span class="c mono">Look ${n2(i + 1)}</span></div>`).join('')}</div>
+    <div class="more"><a href="brand.html?b=${b.n}">View full gallery →</a></div>
+  </section>`; }).join('');
 revealAll();
 </script>
 </body>

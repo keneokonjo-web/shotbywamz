@@ -26,15 +26,17 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .side[aria-expanded=true] i:after{transform:rotate(0)}
 .hd .mid{position:absolute;left:50%;transform:translateX(-50%);top:.9rem;display:flex;gap:.4rem}
 .hd .mid a:hover{text-decoration:underline;text-underline-offset:4px}
-.burger{display:none;position:absolute;left:50%;top:1.15rem;transform:translateX(-50%);width:26px;height:16px}
+.burger{display:none;width:28px;height:18px;position:relative}
 .burger b{position:absolute;left:0;right:0;height:1.5px;background:currentColor}
 .burger b:first-child{top:0}.burger b:last-child{bottom:0}
 @media(max-width:760px){
- .hd{padding:1rem 1.1rem}
- .side{flex-direction:column;gap:.55rem}
- .side i{width:24px;height:24px}.side i:before,.side i:after{top:11.2px;width:24px}
- .side span{writing-mode:vertical-rl;font-size:1.05rem}
- .hd .mid{display:none}.burger{display:block}
+ .hd{padding:1rem 1.1rem;align-items:center}
+ .hd #menuBtn{display:none}
+ .hd .mid{display:none}
+ .burger{display:block;position:static;transform:none;width:28px;height:18px;position:relative}
+ .burger b{transition:transform .4s var(--ease),top .4s var(--ease),bottom .4s var(--ease)}
+ .burger[aria-expanded=true] b:first-child{top:8px;transform:rotate(45deg)}
+ .burger[aria-expanded=true] b:last-child{bottom:8px;transform:rotate(-45deg)}
 }
 .menu{position:fixed;inset:0;z-index:50;background:var(--bg);display:flex;flex-direction:column;justify-content:center;padding:0 var(--pad);clip-path:inset(0 0 100% 0);visibility:hidden;transition:clip-path .8s var(--ease),visibility 0s .8s}
 .menu.open{clip-path:inset(0);visibility:visible;transition:clip-path .8s var(--ease)}

@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Wamz's Wall Edition — Shot by Wamz</title>
+<link rel="stylesheet" href="site.css">
+<style>
+.prints{columns:3;column-gap:clamp(1rem,3vw,2.6rem);padding:2.4rem var(--pad) 0}
+.pr{break-inside:avoid;margin:0 0 clamp(1.2rem,3vw,2.4rem);padding:.7rem .7rem 2rem;background:#fff;border:1px solid #e6e6e6;box-shadow:0 14px 30px -18px #0003;transform:rotate(var(--r));transition:transform .6s var(--ease);position:relative}
+.pr:hover{transform:rotate(0) translateY(-6px)}
+.pr:before{content:"";position:absolute;left:50%;top:-11px;width:64px;height:20px;background:#f0e9d8cc;transform:translateX(-50%) rotate(-3deg);z-index:2}
+.pr .ph{aspect-ratio:3/4!important}
+.pr figcaption{position:absolute;left:.8rem;bottom:.6rem;color:var(--mute)}
+@media(max-width:800px){.prints{columns:2}}@media(max-width:480px){.prints{columns:1}}
+</style>
+</head>
+<body data-page="wall">
+<main>
+  <section class="pg"><h1 id="t">Wamz's Wall</h1></section>
+  <section class="prints" id="prints" data-set></section>
+  <a class="next" href="wall.html"><span>Back</span>← Wamz's Wall</a>
+</main>
+<script src="data.js"></script>
+<script src="site.js"></script>
+<script>
+const w = WAMZ.wall.find(x => x.n === +new URLSearchParams(location.search).get('ed')) || WAMZ.wall[0];
+const t = "Wamz's Wall Edition " + w.n;
+document.getElementById('t').textContent = t; document.title = t + ' — Shot by Wamz';
+const rot = [-2.4, 1.8, -1.2, 2.6, -2, 1.4, -1.6];
+document.getElementById('prints').innerHTML = w.ids.map((id, i) => `<figure class="pr" style="--r:${rot[i % 7]}deg" data-reveal>${fig(id, {aspect: '3/4'})}<figcaption class="mono">№${String(i + 1).padStart(2, '0')}</figcaption></figure>`).join('');
+revealAll();
+</script>
+</body>
+</html>

@@ -5,7 +5,7 @@
   window.P = P;
   window.src = id => `img/${id}.jpg`;
   window.thumb = id => `img/${id}-s.jpg`;
-  window.alt = id => `Photograph by Wamz — ${P[id].group}`;
+  window.alt = id => 'Photograph by Wamz';
   /* photo figure; ratio kept natural unless a fixed aspect is passed */
   window.fig = (id, o = {}) => {
     const p = P[id], a = o.aspect || `${p.w}/${p.h}`;
@@ -18,7 +18,7 @@
   document.body.insertAdjacentHTML('afterbegin', `
   <header class="hd">
     <button class="side" id="menuBtn" aria-expanded="false" aria-controls="menu"><i></i><span>Galleries</span></button>
-    <button class="burger" id="burger" aria-label="Open menu"><b></b><b></b></button>
+    <button class="burger" id="burger" aria-label="Menu" aria-expanded="false" aria-controls="menu"><b></b><b></b></button>
     <nav class="mid" aria-label="Main"><a href="wall.html">Wall</a> / <a href="clothing.html">Clothing</a> / <a href="events.html">Events</a></nav>
     <a class="side" href="book.html"><span>Book</span><i></i></a>
   </header>
@@ -51,7 +51,7 @@
 
   /* menu */
   const btn = document.getElementById('menuBtn'), menu = document.getElementById('menu'), burger = document.getElementById('burger');
-  const tog = o => { menu.classList.toggle('open', o); btn.setAttribute('aria-expanded', o); btn.querySelector('span').textContent = o ? 'Close' : 'Galleries'; };
+  const tog = o => { menu.classList.toggle('open', o); btn.setAttribute('aria-expanded', o); burger.setAttribute('aria-expanded', o); btn.querySelector('span').textContent = o ? 'Close' : 'Galleries'; };
   btn.onclick = burger.onclick = () => tog(!menu.classList.contains('open'));
   menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => tog(false)));
   addEventListener('keydown', e => { if (e.key === 'Escape') tog(false); });
@@ -60,7 +60,7 @@
   const lb = document.getElementById('lb'), lbImg = document.getElementById('lbImg');
   let set = [], idx = 0;
   const showLb = () => { const id = set[idx]; lbImg.src = src(id); lbImg.alt = alt(id);
-    document.getElementById('lbCap').textContent = P[id].group;
+    document.getElementById('lbCap').textContent = 'Shot by Wamz';
     document.getElementById('lbCount').textContent = String(idx + 1).padStart(2,'0') + ' / ' + String(set.length).padStart(2,'0'); };
   const openLb = el => { const root = el.closest('[data-set]') || document;
     set = [...root.querySelectorAll('[data-lb]')].map(e => e.dataset.lb); idx = Math.max(0, set.indexOf(el.dataset.lb));

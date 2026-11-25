@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Event gallery — Shot by Wamz</title>
+<link rel="stylesheet" href="site.css">
+<style>
+.mas{columns:3;column-gap:6px;padding:2rem var(--pad) 0}
+.mas .ph{break-inside:avoid;margin-bottom:6px}
+@media(max-width:800px){.mas{columns:2}}
+</style>
+</head>
+<body data-page="events">
+<main>
+  <section class="pg"><h1 id="t">Event</h1></section>
+  <div class="mas" id="mas" data-set></div>
+  <a class="next" href="events.html"><span>Back</span>← Events</a>
+</main>
+<script src="data.js"></script>
+<script src="site.js"></script>
+<script>
+const e = WAMZ.events.find(x => x.n === +new URLSearchParams(location.search).get('e')) || WAMZ.events[0];
+const t = String(e.n).padStart(2, '0') + ' — ' + e.title;
+document.getElementById('t').textContent = t; document.title = e.title + ' — Shot by Wamz';
+document.getElementById('mas').innerHTML = e.ids.map(id => fig(id)).join('');
+</script>
+</body>
+</html>
