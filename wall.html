@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Wamz's Wall — Shot by Wamz</title>
+<meta name="description" content="Wamz's Wall — a personal portrait project by Wamz. Coming December 2026.">
+<link rel="stylesheet" href="site.css">
+<style>
+.status{display:inline-block;background:var(--accent);color:#fff;padding:.5rem .8rem;margin-bottom:1.2rem}
+.lede{max-width:44rem;font-size:clamp(1.3rem,2.6vw,2.2rem);line-height:1.2;letter-spacing:-.03em;font-weight:500}
+.facts{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;margin-top:3rem;padding-top:1rem;border-top:1px solid var(--fg)}
+.facts h3{font-weight:400;color:var(--mute);margin-bottom:.5rem}
+.facts p{max-width:20rem}
+@media(max-width:700px){.facts{grid-template-columns:1fr;gap:1.4rem}}
+.prints{columns:3;column-gap:clamp(1rem,3vw,2.6rem);padding:clamp(3rem,6vw,5rem) var(--pad) 0}
+.print{break-inside:avoid;margin:0 0 clamp(1.4rem,3vw,2.6rem);padding:.7rem .7rem 2.4rem;background:#fff;border:1px solid #e6e6e6;box-shadow:0 14px 30px -18px #0003;transform:rotate(var(--r));transition:transform .6s var(--ease);position:relative}
+.print:hover{transform:rotate(0) translateY(-6px)}
+.print:before{content:"";position:absolute;left:50%;top:-11px;width:64px;height:20px;background:#f0e9d8cc;transform:translateX(-50%) rotate(-3deg)}
+.print figcaption{position:absolute;left:.8rem;bottom:.7rem;color:var(--mute)}
+@media(max-width:800px){.prints{columns:2}}@media(max-width:480px){.prints{columns:1}}
+.notify{display:grid;grid-template-columns:1fr 1fr;gap:3rem;padding:clamp(3rem,6vw,5rem) var(--pad) 0}
+.notify h2{font-weight:500;font-size:clamp(2rem,5vw,4.2rem);letter-spacing:-.045em;line-height:1}
+.nf{display:flex;gap:.8rem;align-items:flex-end;flex-wrap:wrap}
+.nf input{flex:1;min-width:14rem;font:inherit;border:0;border-bottom:1px solid var(--fg);padding:.7rem 0;background:transparent;border-radius:0}
+.nf input:focus{outline:0;border-color:var(--accent)}
+.nf button{padding:.9rem 1.4rem;background:var(--fg);color:#fff}
+.nf button:hover{background:var(--accent)}
+.nf+p{color:var(--mute);margin-top:.8rem;font-size:.85rem}
+@media(max-width:800px){.notify{grid-template-columns:1fr;gap:1.4rem}}
+</style>
+</head>
+<body data-page="wall">
+<main>
+  <section class="pg">
+    <div class="lab mono">Gallery 01 · Personal project</div>
+    <h1>Wamz's Wall</h1>
+    <span class="status mono">Coming December 2026</span>
+    <p class="lede">A personal project by Wamz — portraits, faces and Lagos nights made outside any brief, collected on one growing wall.</p>
+    <div class="facts">
+      <div><h3 class="mono">What it is</h3><p>A running series of portraits, shown as a wall of prints. New pieces are pinned up as they are made.</p></div>
+      <div><h3 class="mono">Where</h3><p>Shot in and around Lagos, Nigeria.</p></div>
+      <div><h3 class="mono">When</h3><p>Launching December 2026. A first preview is below.</p></div>
+    </div>
+  </section>
+  <section class="prints" id="prints" data-set aria-label="Preview of the wall"></section>
+  <section class="notify">
+    <h2 data-reveal>Be first to see the wall</h2>
+    <div data-reveal>
+      <form class="nf" id="nf"><input type="email" placeholder="Your email" aria-label="Email address"><button class="mono" type="submit">Notify me</button></form>
+      <p id="nfn">Demo form: nothing is sent yet.</p>
+    </div>
+  </section>
+  <a class="next" href="clothing.html"><span>Next gallery</span>Clothing Brands →</a>
+</main>
+
+<script src="data.js"></script>
+<script src="site.js"></script>
+<script>
+const W = WAMZ, ids = W.groups.find(g => g.cat === 'wall').ids, rot = [-2.4, 1.8, -1.2, 2.6, -2, 1.4, -1.6];
+document.getElementById('prints').innerHTML = ids.map((id, i) => `<figure class="print" style="--r:${rot[i % 7]}deg" data-reveal>${fig(id, {small: false})}<figcaption class="mono">Wall №${String(i + 1).padStart(2, '0')}</figcaption></figure>`).join('');
+document.getElementById('nf').addEventListener('submit', e => { e.preventDefault(); document.getElementById('nfn').textContent = 'Thank you — this is a demo form, nothing was sent.'; });
+revealAll();
+</script>
+</body>
+</html>

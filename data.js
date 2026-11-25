@@ -1,28 +1,336 @@
-/* Shared content for all four concepts. Swap src files + captions when final photos arrive. */
-window.WAMZ = {
-  brand: 'Shot by Wamz',
-  short: 'WAMZ',
-  city: 'Lagos, Nigeria',
-  availability: 'December 2026 — limited dates left',
-  contact: { whatsapp: '+234 000 000 0000', email: 'hello@shotbywamz.com', instagram: '@shotbywamz' }, // placeholders
-  photos: [
-    { id:'studio-solo',    src:'img/studio-solo.jpg',    s:'img/studio-solo-s.jpg',    cat:'Clothing', title:'Made to be seen',   alt:'Model in black crop top and pleated skirt against a pale studio wall', r:2/3 },
-    { id:'stripes-duo',    src:'img/stripes-duo.jpg',    s:'img/stripes-duo-s.jpg',    cat:'Clothing', title:'Stripe, Lagos sun', alt:'Two models in striped polos on a sunlit Lagos street', r:2/3 },
-    { id:'night-flash',    src:'img/night-flash.jpg',    s:'img/night-flash-s.jpg', cat:'Night',    title:'After dark',        alt:'Flash photograph of a man pointing at the camera at a night event', r:2/3 },
-    { id:'mono-portrait',  src:'img/mono-portrait.jpg',  s:'img/mono-portrait-s.jpg',  cat:'Portrait', title:'Quiet fire',        alt:'Black and white portrait of a woman with braids against a wall', r:2/3 },
-    { id:'studio-trio',    src:'img/studio-trio.jpg',    s:'img/studio-trio-s.jpg',    cat:'Clothing', title:'Three of a kind',   alt:'Three models in matching black tees and skirts', r:2/3 },
-    { id:'chain-detail',   src:'img/chain-detail.jpg',   s:'img/chain-detail-s.jpg',   cat:'Detail',   title:'Charms',            alt:'Close detail of silver pendants against a printed shirt', r:3/2 },
-    { id:'stripes-seated', src:'img/stripes-seated.jpg', s:'img/stripes-seated-s.jpg', cat:'Clothing', title:'Hard light',        alt:'Model seated against a corrugated wall in hard sunlight', r:2/3 }
-  ],
-  wall: { // Wamz's Wall — personal project (placeholder copy)
-    title: "Wamz's Wall",
-    blurb: "My own project. A running wall of the faces, nights and streets of Lagos that don't fit a client brief.",
-    ids: ['night-flash','mono-portrait','chain-detail','stripes-seated','studio-solo','stripes-duo']
+/* Shared content. Rename groups / add photos here. Placeholders marked TODO. */
+window.WAMZ={
+ "photos": [
+  {
+   "id": "c01-2308",
+   "cat": "clothing",
+   "group": "Brand 01",
+   "w": 1133,
+   "h": 1700
   },
-  services: [
-    { n:'01', t:'Clothing & brand campaigns', d:'Lookbooks, drops and campaign imagery for fashion labels.' },
-    { n:'02', t:'Portraits & editorial',      d:'Studio or on-location, styled or straight.' },
-    { n:'03', t:'Events & nightlife',         d:'December parties, launches and weekends away.' }
-  ]
+  {
+   "id": "c01-2351",
+   "cat": "clothing",
+   "group": "Brand 01",
+   "w": 1133,
+   "h": 1700
+  },
+  {
+   "id": "c01-2383",
+   "cat": "clothing",
+   "group": "Brand 01",
+   "w": 1133,
+   "h": 1700
+  },
+  {
+   "id": "c01-2418",
+   "cat": "clothing",
+   "group": "Brand 01",
+   "w": 1133,
+   "h": 1700
+  },
+  {
+   "id": "c01-2427",
+   "cat": "clothing",
+   "group": "Brand 01",
+   "w": 1133,
+   "h": 1700
+  },
+  {
+   "id": "c01-2437",
+   "cat": "clothing",
+   "group": "Brand 01",
+   "w": 1133,
+   "h": 1700
+  },
+  {
+   "id": "c02-0808",
+   "cat": "clothing",
+   "group": "Brand 02",
+   "w": 1133,
+   "h": 1700
+  },
+  {
+   "id": "c02-0765",
+   "cat": "clothing",
+   "group": "Brand 02",
+   "w": 1133,
+   "h": 1700
+  },
+  {
+   "id": "c02-0793",
+   "cat": "clothing",
+   "group": "Brand 02",
+   "w": 1133,
+   "h": 1700
+  },
+  {
+   "id": "c02-0849",
+   "cat": "clothing",
+   "group": "Brand 02",
+   "w": 1133,
+   "h": 1700
+  },
+  {
+   "id": "c02-0900",
+   "cat": "clothing",
+   "group": "Brand 02",
+   "w": 1133,
+   "h": 1700
+  },
+  {
+   "id": "c02-1235",
+   "cat": "clothing",
+   "group": "Brand 02",
+   "w": 1133,
+   "h": 1700
+  },
+  {
+   "id": "c02-1304",
+   "cat": "clothing",
+   "group": "Brand 02",
+   "w": 1133,
+   "h": 1700
+  },
+  {
+   "id": "c03-1129",
+   "cat": "clothing",
+   "group": "Brand 03",
+   "w": 1133,
+   "h": 1700
+  },
+  {
+   "id": "c03-1091",
+   "cat": "clothing",
+   "group": "Brand 03",
+   "w": 1700,
+   "h": 1133
+  },
+  {
+   "id": "c04-7099",
+   "cat": "clothing",
+   "group": "Brand 04",
+   "w": 1133,
+   "h": 1700
+  },
+  {
+   "id": "c04-0237",
+   "cat": "clothing",
+   "group": "Brand 04",
+   "w": 1133,
+   "h": 1700
+  },
+  {
+   "id": "c04-7185",
+   "cat": "clothing",
+   "group": "Brand 04",
+   "w": 1700,
+   "h": 1133
+  },
+  {
+   "id": "e01-2535",
+   "cat": "events",
+   "group": "Event 01",
+   "w": 1700,
+   "h": 1133
+  },
+  {
+   "id": "e01-2558",
+   "cat": "events",
+   "group": "Event 01",
+   "w": 1700,
+   "h": 1133
+  },
+  {
+   "id": "e01-2562",
+   "cat": "events",
+   "group": "Event 01",
+   "w": 1133,
+   "h": 1700
+  },
+  {
+   "id": "e01-2606",
+   "cat": "events",
+   "group": "Event 01",
+   "w": 1133,
+   "h": 1700
+  },
+  {
+   "id": "e01-2642",
+   "cat": "events",
+   "group": "Event 01",
+   "w": 1133,
+   "h": 1700
+  },
+  {
+   "id": "e02-2580",
+   "cat": "events",
+   "group": "Event 02",
+   "w": 1133,
+   "h": 1700
+  },
+  {
+   "id": "e02-2680",
+   "cat": "events",
+   "group": "Event 02",
+   "w": 1133,
+   "h": 1700
+  },
+  {
+   "id": "e02-2685",
+   "cat": "events",
+   "group": "Event 02",
+   "w": 1133,
+   "h": 1700
+  },
+  {
+   "id": "e02-2719",
+   "cat": "events",
+   "group": "Event 02",
+   "w": 1133,
+   "h": 1700
+  },
+  {
+   "id": "e02-2778",
+   "cat": "events",
+   "group": "Event 02",
+   "w": 1133,
+   "h": 1700
+  },
+  {
+   "id": "wwall-1162",
+   "cat": "wall",
+   "group": "Wall",
+   "w": 1133,
+   "h": 1700
+  },
+  {
+   "id": "wwall-1148",
+   "cat": "wall",
+   "group": "Wall",
+   "w": 1133,
+   "h": 1700
+  },
+  {
+   "id": "wwall-1159",
+   "cat": "wall",
+   "group": "Wall",
+   "w": 1133,
+   "h": 1700
+  },
+  {
+   "id": "wwall-1205",
+   "cat": "wall",
+   "group": "Wall",
+   "w": 1073,
+   "h": 1700
+  },
+  {
+   "id": "wwall-1216",
+   "cat": "wall",
+   "group": "Wall",
+   "w": 1133,
+   "h": 1700
+  },
+  {
+   "id": "wwall-1233",
+   "cat": "wall",
+   "group": "Wall",
+   "w": 1133,
+   "h": 1700
+  },
+  {
+   "id": "wwall-1256",
+   "cat": "wall",
+   "group": "Wall",
+   "w": 1133,
+   "h": 1700
+  }
+ ],
+ "groups": [
+  {
+   "cat": "clothing",
+   "name": "Brand 01",
+   "sub": "Striped polos, Lagos street",
+   "ids": [
+    "c01-2308",
+    "c01-2351",
+    "c01-2383",
+    "c01-2418",
+    "c01-2427",
+    "c01-2437"
+   ]
+  },
+  {
+   "cat": "clothing",
+   "name": "Brand 02",
+   "sub": "Black Beauty tees, studio",
+   "ids": [
+    "c02-0808",
+    "c02-0765",
+    "c02-0793",
+    "c02-0849",
+    "c02-0900",
+    "c02-1235",
+    "c02-1304"
+   ]
+  },
+  {
+   "cat": "clothing",
+   "name": "Brand 03",
+   "sub": "Printed polo, studio",
+   "ids": [
+    "c03-1129",
+    "c03-1091"
+   ]
+  },
+  {
+   "cat": "clothing",
+   "name": "Brand 04",
+   "sub": "More looks",
+   "ids": [
+    "c04-7099",
+    "c04-0237",
+    "c04-7185"
+   ]
+  },
+  {
+   "cat": "events",
+   "name": "Event 01",
+   "sub": "Ligali night",
+   "ids": [
+    "e01-2535",
+    "e01-2558",
+    "e01-2562",
+    "e01-2606",
+    "e01-2642"
+   ]
+  },
+  {
+   "cat": "events",
+   "name": "Event 02",
+   "sub": "Live set",
+   "ids": [
+    "e02-2580",
+    "e02-2680",
+    "e02-2685",
+    "e02-2719",
+    "e02-2778"
+   ]
+  },
+  {
+   "cat": "wall",
+   "name": "Wall",
+   "sub": "Portraits in black and white",
+   "ids": [
+    "wwall-1162",
+    "wwall-1148",
+    "wwall-1159",
+    "wwall-1205",
+    "wwall-1216",
+    "wwall-1233",
+    "wwall-1256"
+   ]
+  }
+ ]
 };
-WAMZ.photo = id => WAMZ.photos.find(p => p.id === id);

@@ -1,18 +1,135 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Shot by Wamz — Concepts</title>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Shot by Wamz — Photographer, Lagos</title>
+<meta name="description" content="Shot by Wamz — Lagos-based photographer. Clothing brands, events and personal work. Booking December 2026.">
+<link rel="stylesheet" href="site.css">
 <style>
-*{box-sizing:border-box;margin:0}body{font-family:Helvetica,Arial,sans-serif;background:#111;color:#fff;padding:clamp(1.2rem,4vw,3rem)}
-h1{font-weight:500;font-size:clamp(2rem,5vw,4rem);letter-spacing:-.04em}p.s{opacity:.6;margin:.6rem 0 2.5rem;max-width:40rem;line-height:1.5}
-.g{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1rem}
-a{color:inherit;text-decoration:none;display:block;border:1px solid #fff3;border-radius:6px;overflow:hidden;transition:transform .3s}
-a:hover{transform:translateY(-4px)}a img{width:100%;aspect-ratio:16/10;object-fit:cover;object-position:top}
-a div{padding:1rem 1.1rem 1.3rem}small{opacity:.55;letter-spacing:.12em;text-transform:uppercase;font-size:.68rem}b{display:block;font-weight:500;font-size:1.3rem;margin:.3rem 0}span{opacity:.7;font-size:.9rem;line-height:1.4;display:block}
-</style></head><body>
-<h1>Shot by Wamz — four concepts</h1>
-<p class="s">Same photos, same content, same placeholder booking form. Only the design changes. Pick a base and tell me what to borrow from the others.</p>
-<div class="g">
-<a href="viv.html"><img src="shots/c1.png" alt=""><div><small>White · base: VIV hero</small><b>1 · Cross</b><span>Giant wordmark with a ring of cycling photos around it. Bold grotesk, one orange accent, black Wall section.</span></div></a>
-<a href="wonder.html"><img src="shots/c2.png" alt=""><div><small>Off-white · base: Wonder hero</small><b>2 · Index</b><span>Blackletter mark over a rule, project index on the left driving a big photo on the right. Serif, editorial.</span></div></a>
-<a href="system.html"><img src="shots/c3.png" alt=""><div><small>Black · Arc'teryx / Vergely feel</small><b>3 · System</b><span>Full-bleed slideshow with segmented progress, mono technical labels, pinned horizontal gallery.</span></div></a>
-<a href="noir.html"><img src="shots/c4.png" alt=""><div><small>Black · Sam Thies / Gaudin feel</small><b>4 · Noir</b><span>Huge serif title, cursor image trail, big typographic index, floating collage Wall.</span></div></a>
-</div></body></html>
+/* ---------- hero (VIV-style): wordmark + continuous photo columns ---------- */
+.top{position:relative}
+.mark{position:absolute;left:11.7vw;top:25vh;z-index:0;font-weight:700;font-size:16vw;line-height:.74;letter-spacing:-.055em;white-space:nowrap;pointer-events:none}
+.mark span{display:inline-block;transform:translateY(40%);opacity:0;animation:rise 1.2s var(--ease) .15s forwards}
+@keyframes rise{to{transform:none;opacity:1}}
+.tag{position:absolute;left:64vw;top:25vh;z-index:3;font-size:clamp(1rem,1.5vw,1.4rem);line-height:1.2;max-width:22vw;letter-spacing:-.01em}
+.cols{position:relative;z-index:1;display:grid;grid-template-columns:11vw 25vw 25vw 25vw 11vw;justify-content:space-between;align-items:start;padding-bottom:6vw}
+.col{display:flex;flex-direction:column;gap:.75vw}
+.col:nth-child(1),.col:nth-child(5){margin-top:30vh}
+.col:nth-child(2),.col:nth-child(4){margin-top:66vh}
+.col:nth-child(3){margin-top:45.5vh;z-index:2}
+.cell{position:relative;background:#f1f1f1;overflow:hidden}
+.cell img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.cell img.fade{opacity:0;transition:opacity .9s ease}
+.cell img.fade.on{opacity:1}
+.cell.reveal{opacity:0;transform:translateY(30px);transition:opacity 1s var(--ease),transform 1s var(--ease)}
+.cell.reveal.in{opacity:1;transform:none}
+@media(max-width:760px){
+ .mark{left:4.5vw;top:25vh;font-size:30vw}
+ .tag{left:4.5vw;top:15vh;max-width:70vw;font-size:1.05rem}
+ .cols{grid-template-columns:1fr 1fr;justify-content:stretch;gap:2.6vw;padding:0 2.6vw 6vw}
+ .col{gap:2.6vw}
+ .col:nth-child(1){margin-top:calc(25vh + 17vw)}
+ .col:nth-child(2){margin-top:calc(25vh + 17vw + 24vh)}
+}
+/* ---------- doors (Per Appelgren-style blank space) ---------- */
+.doors{position:relative;min-height:112vh;display:grid;place-items:center;padding:6rem 1rem;overflow:hidden}
+.names{position:relative;z-index:3;display:grid;gap:clamp(1.2rem,3vw,2.6rem);text-align:center}
+.names a{font-weight:500;font-size:clamp(2.2rem,6.2vw,5.6rem);line-height:1;letter-spacing:-.04em;transition:opacity .35s,color .35s}
+.names a small{display:block;margin-top:.7rem;color:var(--mute);font-size:.7rem}
+.names a:hover,.names a:focus-visible{color:var(--accent)}
+.names.hov a:not(.on){opacity:.22}
+.dimg{position:absolute;z-index:1;width:var(--w);left:var(--x);top:var(--y);animation:float 9s ease-in-out infinite;animation-delay:var(--dl,0s);transition:opacity .5s,filter .5s;background:#f1f1f1}
+.dimg img{width:100%;height:auto}
+.doors.hov .dimg:not(.on){opacity:.1}
+@keyframes float{50%{transform:translateY(-10px)}}
+/* 7 images around the names — desktop */
+.dimg:nth-of-type(1){--x:7%;--y:7%;--w:10vw}
+.dimg:nth-of-type(2){--x:33%;--y:3%;--w:9vw;--dl:-2s}
+.dimg:nth-of-type(3){--x:70%;--y:8%;--w:11vw;--dl:-4s}
+.dimg:nth-of-type(4){--x:86%;--y:42%;--w:8vw;--dl:-6s}
+.dimg:nth-of-type(5){--x:4%;--y:52%;--w:9vw;--dl:-3s}
+.dimg:nth-of-type(6){--x:28%;--y:72%;--w:10vw;--dl:-5s}
+.dimg:nth-of-type(7){--x:64%;--y:68%;--w:11vw;--dl:-1s}
+@media(max-width:760px){
+ .doors{min-height:108svh;padding:5rem .5rem}
+ .names a{font-size:clamp(2rem,9.5vw,3.2rem)}
+ .dimg:nth-of-type(1){--x:58%;--y:4%;--w:30vw}
+ .dimg:nth-of-type(2){--x:5%;--y:15%;--w:27vw}
+ .dimg:nth-of-type(3){--x:66%;--y:27%;--w:21vw}
+ .dimg:nth-of-type(4){--x:4%;--y:60%;--w:23vw}
+ .dimg:nth-of-type(5){--x:58%;--y:63%;--w:30vw}
+ .dimg:nth-of-type(6){--x:30%;--y:83%;--w:21vw}
+ .dimg:nth-of-type(7){--x:74%;--y:90%;--w:20vw}
+}
+</style>
+</head>
+<body data-page="home">
+<main>
+  <div class="top" id="top">
+    <p class="tag">Photographer, Lagos.<br>Clothing brands, events &amp; personal work.</p>
+    <h1 class="mark" aria-label="Wamz"><span>WAMZ</span></h1>
+    <div class="cols" id="cols"></div>
+  </div>
+
+  <section class="doors" id="doors" aria-label="Galleries">
+    <nav class="names mono-off" id="names">
+      <a href="wall.html" data-cat="wall">Wamz's Wall<small class="mono">Coming December 2026</small></a>
+      <a href="clothing.html" data-cat="clothing">Clothing Brands<small class="mono">4 shoots</small></a>
+      <a href="events.html" data-cat="events">Events<small class="mono">2 nights</small></a>
+    </nav>
+  </section>
+</main>
+
+<script src="data.js"></script>
+<script src="site.js"></script>
+<script>
+/* ---- hero columns ---- */
+const COLS = [
+  ['c01-2351','e01-2562','wwall-1205','c02-0849','e02-2685','c01-2437'],
+  ['c02-0765','e01-2535','c01-2383'],
+  ['c02-0808','c04-0237','wwall-1148'],
+  ['c01-2308','e02-2680','c03-1129'],
+  ['e02-2580','c02-1235','wwall-1233','c04-7099','e01-2606','c02-0900']
+];
+const CYC = Object.values(P).filter(p => p.h / p.w > 1.4).map(p => p.id);   // portrait-only pool for the cycling cells
+const mq = matchMedia('(max-width:760px)');
+const colsEl = document.getElementById('cols');
+let timer;
+function cell(id, cycle){
+  const p = P[id], aspect = cycle ? '2/3' : `${p.w}/${p.h}`;
+  return `<div class="cell reveal ${cycle ? 'cyc' : ''}" style="aspect-ratio:${aspect}"><img src="${thumb(id)}" alt="${alt(id)}" ${cycle ? '' : 'loading="lazy"'}></div>`;
+}
+function build(){
+  clearInterval(timer);
+  let cols;
+  if (mq.matches) {                                  // mobile: 2-column feed, natural proportions
+    const flat = []; for (let r = 0; r < 6; r++) COLS.forEach(c => c[r] && flat.push(c[r]));
+    cols = [[], []]; flat.forEach((id, i) => cols[i % 2].push(id));
+  } else cols = COLS;
+  colsEl.innerHTML = cols.map((c, ci) => `<div class="col">${c.map((id, i) => cell(id, !mq.matches && i === 0)).join('')}</div>`).join('');
+  requestAnimationFrame(() => colsEl.querySelectorAll('.cell').forEach((c, i) => setTimeout(() => c.classList.add('in'), 60 * (i % 7))));
+  if (!mq.matches) {                                  // desktop: first cell of each column keeps swapping, like the VIV hero
+    const cyc = [...colsEl.querySelectorAll('.cyc')]; let n = 0;
+    timer = setInterval(() => {
+      const c = cyc[[2,0,4,1,3][n % 5]], id = CYC[Math.floor(Math.random() * CYC.length)];
+      const im = new Image(); im.src = thumb(id); im.alt = alt(id); im.className = 'fade';
+      im.onload = () => { c.appendChild(im); requestAnimationFrame(() => im.classList.add('on'));
+        [...c.querySelectorAll('img')].slice(0, -1).forEach(o => setTimeout(() => o.remove(), 1000)); };
+      n++;
+    }, 1500);
+  }
+}
+mq.addEventListener('change', build); build();
+
+/* ---- the "doors": 7 photos scattered around three gallery names ---- */
+const DOORS = [['wwall-1162','wall'],['c02-1304','clothing'],['e02-2778','events'],['c01-2418','clothing'],['wwall-1216','wall'],['e01-2558','events'],['c03-1091','clothing']];
+const doors = document.getElementById('doors'), names = document.getElementById('names');
+names.insertAdjacentHTML('beforebegin', DOORS.map(([id, cat]) => `<a class="dimg" href="${cat === 'wall' ? 'wall' : cat}.html" data-cat="${cat}" tabindex="-1" aria-hidden="true"><img src="${thumb(id)}" alt="" loading="lazy" width="${P[id].w}" height="${P[id].h}"></a>`).join(''));
+const hov = cat => { doors.classList.toggle('hov', !!cat); names.classList.toggle('hov', !!cat);
+  doors.querySelectorAll('[data-cat]').forEach(el => el.classList.toggle('on', el.dataset.cat === cat)); };
+names.querySelectorAll('a').forEach(a => { a.addEventListener('mouseenter', () => hov(a.dataset.cat)); a.addEventListener('focus', () => hov(a.dataset.cat));
+  a.addEventListener('mouseleave', () => hov()); a.addEventListener('blur', () => hov()); });
+</script>
+</body>
+</html>

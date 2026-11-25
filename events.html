@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Events — Shot by Wamz</title>
+<meta name="description" content="Event and nightlife photography by Wamz, Lagos.">
+<link rel="stylesheet" href="site.css">
+<style>
+.ev{display:grid;grid-template-columns:15rem 1fr;gap:clamp(1.5rem,4vw,4rem);padding:clamp(3rem,7vw,6rem) var(--pad) 0;border-top:0}
+.cap{position:sticky;top:5.5rem;align-self:start;border-top:1px solid var(--fg);padding-top:1rem}
+.cap h2{font-weight:500;font-size:clamp(1.8rem,3.4vw,2.8rem);letter-spacing:-.04em;line-height:1;margin:.5rem 0 1rem}
+.cap dl{display:grid;grid-template-columns:auto 1fr;gap:.35rem 1rem;color:var(--mute)}
+.cap dd{color:var(--fg)}
+@media(max-width:860px){.ev{grid-template-columns:1fr}.cap{position:static}}
+
+/* contact sheet */
+.sheet{display:grid;grid-template-columns:repeat(5,1fr);border-left:1px solid var(--fg);border-top:1px solid var(--fg)}
+.fr{position:relative;padding:.6rem .6rem .4rem;border-right:1px solid var(--fg);border-bottom:1px solid var(--fg)}
+.fr .ph{aspect-ratio:4/5!important}
+.fr .no{display:flex;justify-content:space-between;margin-top:.4rem;color:var(--mute)}
+.fr.sl:after{content:"";position:absolute;inset:.25rem .1rem 1.4rem;border:2px solid var(--accent);border-radius:46%;transform:rotate(-2.5deg);pointer-events:none}
+.fr.sl .no b{color:var(--accent);font-weight:400}
+@media(max-width:860px){.sheet{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:480px){.sheet{grid-template-columns:repeat(2,1fr)}}
+.picks{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:6px;align-items:start}
+.picks .lbl{grid-column:1/-1;margin:1.4rem 0 .4rem;color:var(--mute)}
+.picks .l{grid-column:1/-1}
+@media(max-width:600px){.picks{grid-template-columns:1fr}}
+</style>
+</head>
+<body data-page="events">
+<main>
+  <section class="pg">
+    <div class="lab mono">Gallery 03</div>
+    <h1>Events</h1>
+    <div class="meta mono"><span id="cnt"></span><span>Contact sheets &amp; selects</span><span>Lagos</span></div>
+    <nav class="jump mono" id="jump" aria-label="Events"></nav>
+  </section>
+  <div id="events"></div>
+  <a class="next" href="wall.html"><span>Next gallery</span>Wamz's Wall →</a>
+</main>
+
+<script src="data.js"></script>
+<script src="site.js"></script>
+<script>
+const G = WAMZ.groups.filter(g => g.cat === 'events');
+const n2 = n => String(n).padStart(2, '0');
+document.getElementById('cnt').textContent = G.reduce((a, g) => a + g.ids.length, 0) + ' frames · ' + G.length + ' events';
+document.getElementById('jump').innerHTML = G.map((g, i) => `<a href="#e${i}">${n2(i + 1)} ${g.sub}</a>`).join('');
+const frameNo = i => (Math.floor(i / 2) + 1) + (i % 2 ? 'A' : '');
+document.getElementById('events').innerHTML = G.map((g, gi) => {
+  const sel = (gi === 0 ? [0, 2] : [0, 3]).filter(i => g.ids[i] !== undefined);          // frames marked with the red pencil ring + shown large below
+  return `<section class="ev" id="e${gi}">
+    <aside class="cap mono"><span>${g.name}</span><h2 style="font-family:inherit;text-transform:none;letter-spacing:-.04em">${g.sub}</h2>
+      <dl><dt>Where</dt><dd>Lagos</dd><dt>Date</dt><dd>2026 · TBC</dd><dt>Frames</dt><dd>${g.ids.length}</dd></dl></aside>
+    <div data-set>
+      <div class="sheet">${g.ids.map((id, i) => `<div class="fr ${sel.includes(i) ? 'sl' : ''}">${fig(id, {aspect: '4/5', small: true})}<div class="no mono"><span>${frameNo(i)}</span>${sel.includes(i) ? '<b>Select</b>' : '<span>—</span>'}</div></div>`).join('')}</div>
+      <div class="picks"><div class="lbl mono">Selects</div>${sel.map(i => fig(g.ids[i], {cls: P[g.ids[i]].w > P[g.ids[i]].h ? 'l' : ''})).join('')}</div>
+    </div>
+  </section>`; }).join('');
+revealAll();
+</script>
+</body>
+</html>

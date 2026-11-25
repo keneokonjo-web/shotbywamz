@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Book — Shot by Wamz</title>
+<meta name="description" content="Book Wamz for a clothing, event or portrait shoot in Lagos. December 2026 dates are limited.">
+<link rel="stylesheet" href="site.css">
+<style>
+.bkp{display:grid;grid-template-columns:1fr 1.3fr;gap:clamp(2rem,6vw,6rem);padding:7rem var(--pad) 0}
+.bkp h1{font-weight:500;font-size:clamp(2.6rem,7vw,6.4rem);line-height:.95;letter-spacing:-.05em;margin:1rem 0 1.4rem}
+.bkp .lab{color:var(--mute);display:flex;gap:1rem;align-items:center}
+.bkp .lab:before{content:"";width:28px;height:1px;background:var(--fg)}
+.status{display:inline-block;background:var(--accent);color:#fff;padding:.5rem .8rem}
+.bkp ul{list-style:none;margin-top:2rem;line-height:1.9;color:var(--mute)}
+@media(max-width:860px){.bkp{grid-template-columns:1fr}}
+</style>
+</head>
+<body data-page="book">
+<main>
+  <section class="bkp">
+    <div>
+      <div class="lab mono">Booking</div>
+      <h1>Book your December</h1>
+      <span class="status mono">December 2026 — limited dates</span>
+      <ul class="mono"><li>Clothing brands &amp; campaigns</li><li>Events &amp; nightlife</li><li>Portraits</li><li>Based in Lagos, Nigeria</li></ul>
+    </div>
+    <div id="booking-form"></div>
+  </section>
+</main>
+<script src="data.js"></script>
+<script src="site.js"></script>
+<script>mountBooking(document.getElementById('booking-form'));</script>
+</body>
+</html>
