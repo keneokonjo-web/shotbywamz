@@ -34,7 +34,7 @@
       <div><h4>Lagos</h4><span id="clock">—</span></div>
       <div><h4>Galleries</h4><ul><li><a href="wall.html">Wamz's Wall</a></li><li><a href="clothing.html">Clothing Brands</a></li><li><a href="events.html">Events</a></li></ul></div>
       <div><h4>Contact</h4><ul><li>hello@shotbywamz.com</li><li>+234 000 000 0000</li></ul></div>
-      <div><h4>Follow</h4><ul><li>@shotbywamz</li></ul></div>
+      <div><h4>Follow</h4><ul><li><a href="https://instagram.com/_sh0tbywamz" target="_blank" rel="noopener">Instagram — _sh0tbywamz</a></li><li><a href="https://snapchat.com/add/wamz.tn" target="_blank" rel="noopener">Snapchat — wamz.tn</a></li></ul></div>
     </div>
     <div class="giant" aria-hidden="true">WAMZ</div>
   </footer>

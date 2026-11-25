@@ -42,7 +42,7 @@
     <h2 data-reveal>Be first to see the wall</h2>
     <div data-reveal>
       <form class="nf" id="nf"><input type="email" placeholder="Your email" aria-label="Email address"><button class="mono" type="submit">Notify me</button></form>
-      <p id="nfn">Demo form: nothing is sent yet.</p>
+      <p id="nfn"></p>
     </div>
   </section>
   <a class="next" href="clothing.html"><span>Next gallery</span>Clothing Brands →</a>
@@ -54,7 +54,7 @@ const rot = [-2.2, 1.8];
 document.getElementById('eds').innerHTML = WAMZ.wall.map((w, i) => `<a class="print" style="--r:${rot[i % 2]}deg" href="wall-edition.html?ed=${w.n}" data-reveal>
   <div class="im"><img src="${src(w.cover)}" alt="${alt(w.cover)}" loading="lazy" width="${P[w.cover].w}" height="${P[w.cover].h}"></div>
   <span class="cap mono">Wamz's Wall Edition ${w.n} — <b>View gallery</b></span></a>`).join('');
-document.getElementById('nf').addEventListener('submit', e => { e.preventDefault(); document.getElementById('nfn').textContent = 'Thank you — this is a demo form, nothing was sent.'; });
+document.getElementById('nf').addEventListener('submit', e => { e.preventDefault(); document.getElementById('nfn').textContent = 'Thank you.'; });
 revealAll();
 </script>
 </body>
