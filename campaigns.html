@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Campaigns — Shot by Wamz</title>
+<meta name="description" content="Campaign work by Wamz, Lagos.">
+<link rel="stylesheet" href="site.css">
+<style>
+.cps{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(1.4rem,3.4vw,3rem);padding:clamp(2rem,4vw,3rem) var(--pad) 0}
+.pol{display:block;background:#fff;padding:.75rem .75rem 0;border:1px solid #e6e6e6;box-shadow:0 18px 34px -20px #0004;transform:rotate(var(--r));transition:transform .6s var(--ease),box-shadow .6s;position:relative}
+.pol:hover{transform:rotate(0) translateY(-6px);box-shadow:0 26px 40px -22px #0005}
+.pol .im{aspect-ratio:4/5;overflow:hidden;background:#f1f1f1}
+.pol img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s var(--ease)}
+.pol:hover img{transform:scale(1.04)}
+.pol .cap{display:flex;justify-content:space-between;align-items:baseline;gap:.6rem;padding:1rem .1rem 1.15rem}
+.pol .cap b{font-weight:500;font-size:clamp(1.05rem,1.8vw,1.5rem);letter-spacing:-.03em;line-height:1.1}
+.pol .cap span{font-family:"Plex Mono",monospace;font-size:.62rem;letter-spacing:.08em;text-transform:uppercase;color:var(--mute);white-space:nowrap;transition:color .3s}
+.pol:hover .cap span{color:var(--accent)}
+@media(max-width:700px){.cps{grid-template-columns:1fr 1fr;gap:1rem}.pol{padding:.5rem .5rem 0}.pol .cap{flex-direction:column;gap:.35rem;padding:.7rem 0 .8rem}}
+</style>
+</head>
+<body data-page="campaigns">
+<main>
+  <section class="pg tight"><h1>Campaigns</h1></section>
+  <div class="cps" id="cps"></div>
+  <a class="next" href="wall.html"><span>Next gallery</span>Wamz's Wall →</a>
+</main>
+<script src="data.js"></script>
+<script src="site.js"></script>
+<script>
+const rot = [-2, 1.6, -1.2, 2.2];
+document.getElementById('cps').innerHTML = WAMZ.campaigns.map((c, i) => `<a class="pol" style="--r:${rot[i % 4]}deg" href="campaign.html?c=${c.n}" data-reveal>
+  <div class="im"><img src="${src(c.cover)}" alt="${alt(c.cover)}" loading="lazy" width="${P[c.cover].w}" height="${P[c.cover].h}"></div>
+  <div class="cap"><b>${c.title}</b><span>View gallery →</span></div></a>`).join('');
+revealAll();
+</script>
+</body>
+</html>

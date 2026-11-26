@@ -13,13 +13,13 @@
   };
 
   const page = document.body.dataset.page || '';
-  const links = [['index.html','Home'],['wall.html',"Wamz's Wall"],['clothing.html','Clothing Brands'],['events.html','Events'],['book.html','Book']];
+  const links = [['index.html','Home'],['wall.html',"Wamz's Wall"],['clothing.html','Clothing Brands'],['events.html','Events'],['campaigns.html','Campaigns'],['book.html','Book']];
 
   document.body.insertAdjacentHTML('afterbegin', `
   <header class="hd">
     <button class="side" id="menuBtn" aria-expanded="false" aria-controls="menu"><i></i><span>Galleries</span></button>
     <button class="burger" id="burger" aria-label="Menu" aria-expanded="false" aria-controls="menu"><b></b><b></b></button>
-    <nav class="mid" aria-label="Main"><a href="wall.html">Wall</a> / <a href="clothing.html">Clothing</a> / <a href="events.html">Events</a></nav>
+    <nav class="mid" aria-label="Main"><a href="wall.html">Wall</a> / <a href="clothing.html">Clothing</a> / <a href="events.html">Events</a> / <a href="campaigns.html">Campaigns</a></nav>
     <a class="side" href="book.html"><span>Book</span><i></i></a>
   </header>
   <div class="menu" id="menu" aria-label="Menu">
@@ -32,7 +32,7 @@
     <a class="chip" href="book.html">● Booking December 2026 — limited dates <span aria-hidden="true">→</span></a>
     <div class="cols mono">
       <div><h4>Lagos</h4><span id="clock">—</span></div>
-      <div><h4>Galleries</h4><ul><li><a href="wall.html">Wamz's Wall</a></li><li><a href="clothing.html">Clothing Brands</a></li><li><a href="events.html">Events</a></li></ul></div>
+      <div><h4>Galleries</h4><ul><li><a href="wall.html">Wamz's Wall</a></li><li><a href="clothing.html">Clothing Brands</a></li><li><a href="events.html">Events</a></li><li><a href="campaigns.html">Campaigns</a></li></ul></div>
       <div><h4>Contact</h4><ul><li>hello@shotbywamz.com</li><li>+234 000 000 0000</li></ul></div>
       <div><h4>Follow</h4><ul><li><a href="https://instagram.com/_sh0tbywamz" target="_blank" rel="noopener">Instagram — _sh0tbywamz</a></li><li><a href="https://snapchat.com/add/wamz.tn" target="_blank" rel="noopener">Snapchat — wamz.tn</a></li></ul></div>
     </div>

@@ -7,19 +7,21 @@
 <meta name="description" content="Event and nightlife photography by Wamz, Lagos.">
 <link rel="stylesheet" href="site.css">
 <style>
-.evs{display:grid;grid-template-columns:1fr 1fr;gap:clamp(1.5rem,4vw,4rem);padding:clamp(2.5rem,6vw,5rem) var(--pad) 0;align-items:start}
+.evs{display:grid;grid-template-columns:1fr 1fr;gap:clamp(1.5rem,4vw,4rem);padding:1.2rem var(--pad) 0;align-items:start}
 .evs>a:nth-child(even){margin-top:clamp(2rem,9vw,9rem)}
+.evs>a:nth-child(n+3){margin-top:clamp(1.5rem,3vw,3rem)}
+.evs>a:nth-child(3){margin-top:clamp(1.5rem,3vw,3rem)}
 .evs .t{display:flex;justify-content:space-between;align-items:baseline;gap:1rem;margin-bottom:.9rem}
 .evs h2{font-weight:500;font-size:clamp(1.5rem,3.4vw,3rem);letter-spacing:-.04em;line-height:1}
 .evs .v{font-family:"Plex Mono",monospace;font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;color:var(--mute);white-space:nowrap;transition:color .3s}
 .evs a:hover .v{color:var(--accent)}
 .evs .ph{cursor:pointer}
-@media(max-width:700px){.evs{grid-template-columns:1fr}.evs>a:nth-child(even){margin-top:0}}
+@media(max-width:700px){.evs{grid-template-columns:1fr}.evs>a:nth-child(n){margin-top:0}}
 </style>
 </head>
 <body data-page="events">
 <main>
-  <section class="pg"><h1>Events</h1></section>
+  <section class="pg tight"><h1>Events</h1></section>
   <div class="evs" id="evs"></div>
   <a class="next" href="wall.html"><span>Next gallery</span>Wamz's Wall →</a>
 </main>

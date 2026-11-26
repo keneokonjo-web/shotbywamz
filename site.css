@@ -96,3 +96,8 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .bk.sent .bk-done{display:block}
 .bk.sent .bk-row,.bk.sent>label,.bk.sent .bk-submit,.bk.sent .bk-note{display:none}
 @media(max-width:640px){.bk-row{grid-template-columns:1fr}}
+
+/* drawn arrow (never the emoji glyph) */
+.arr{display:inline-block;width:.8em;height:.8em;vertical-align:-.05em;background:currentColor;-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M6 18L18 6M8 6h10v10' fill='none' stroke='black' stroke-width='2'/%3E%3C/svg%3E") center/contain no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M6 18L18 6M8 6h10v10' fill='none' stroke='black' stroke-width='2'/%3E%3C/svg%3E") center/contain no-repeat}
+/* tighter gap between a gallery title and its first item */
+.pg.tight h1{margin:1rem 0 0}

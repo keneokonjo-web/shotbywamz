@@ -8,6 +8,7 @@
 <link rel="stylesheet" href="site.css">
 <style>
 .chap{padding:clamp(3rem,7vw,6rem) var(--pad) 0}
+#chapters .chap:first-child{padding-top:1.2rem}
 .chap h2{font-weight:500;font-size:clamp(1.8rem,4.4vw,3.6rem);letter-spacing:-.04em;line-height:1;margin-bottom:1.4rem}
 .lk{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
 .lk .ph{aspect-ratio:4/5!important}
@@ -22,7 +23,7 @@
 </head>
 <body data-page="clothing">
 <main>
-  <section class="pg"><h1>Clothing Brands</h1></section>
+  <section class="pg tight"><h1>Clothing Brands</h1></section>
   <div id="chapters"></div>
   <a class="next" href="events.html"><span>Next gallery</span>Events →</a>
 </main>
@@ -34,7 +35,7 @@ const n2 = n => String(n).padStart(2, '0');
 document.getElementById('chapters').innerHTML = WAMZ.brands.map(b => {
   const shown = b.ids.slice(0, 6);
   return `<section class="chap" id="b${b.n}">
-    <h2 data-reveal>Brand ${n2(b.n)}</h2>
+    <h2 data-reveal>${b.name}</h2>
     <div class="lk" data-set>${shown.map((id, i) => `<div class="ph ${P[id].w > P[id].h ? 'l' : ''}" data-lb="${id}" tabindex="0"><span class="n mono">${n2(i + 1)}</span><img src="${src(id)}" alt="${alt(id)}" loading="lazy" width="${P[id].w}" height="${P[id].h}"><span class="c mono">Look ${n2(i + 1)}</span></div>`).join('')}</div>
     <div class="more"><a href="brand.html?b=${b.n}">View full gallery →</a></div>
   </section>`; }).join('');

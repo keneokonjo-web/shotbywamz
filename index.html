@@ -34,8 +34,8 @@
 .names{position:relative;z-index:3;display:grid;gap:0;text-align:center;padding:.4rem .8rem;background:var(--bg)}
 .names a{display:block;font-weight:500;font-size:clamp(1.15rem,2.4vw,2.2rem);line-height:1.18;letter-spacing:-.01em;text-transform:uppercase;transition:opacity .35s,color .35s}
 .names a:hover,.names a:focus-visible{color:var(--accent)}
-.names .ar{display:inline-block;margin-left:.35em;font-size:.8em;animation:nudge 3.4s ease-in-out infinite}
-.names a:nth-child(2) .ar{animation-delay:.5s}.names a:nth-child(3) .ar{animation-delay:1s}
+.names .ar{margin-left:.4em;width:.62em;height:.62em;animation:nudge 3.4s ease-in-out infinite}
+.names a:nth-child(2) .ar{animation-delay:.5s}.names a:nth-child(3) .ar{animation-delay:1s}.names a:nth-child(4) .ar{animation-delay:1.5s}
 @keyframes nudge{0%,55%,100%{transform:translate(0,0)}75%{transform:translate(4px,-4px)}}
 .names.hov a:not(.on){opacity:.22}
 .dimg{position:absolute;z-index:1;width:var(--w);aspect-ratio:3/4;left:var(--x);top:var(--y);overflow:hidden;background:#f1f1f1;animation:float 9s ease-in-out infinite;animation-delay:var(--dl,0s);transition:opacity .5s}
@@ -50,7 +50,14 @@
 .dimg:nth-of-type(5){--x:17%;--y:68%;--w:9vw;--dl:-3s}
 .dimg:nth-of-type(6){--x:48%;--y:72%;--w:8vw;--dl:-5s}
 .dimg:nth-of-type(7){--x:75%;--y:66%;--w:9vw;--dl:-1s}
+.dimg:nth-of-type(n+8){display:block}
+.dimg:nth-of-type(8){--x:2%;--y:38%;--w:7vw;--dl:-7s}
+.dimg:nth-of-type(9){--x:90%;--y:44%;--w:7vw;--dl:-2s}
+.dimg:nth-of-type(10){--x:25%;--y:40%;--w:6vw;--dl:-5s}
+.dimg:nth-of-type(11){--x:68%;--y:38%;--w:6vw;--dl:-3s}
+.dimg:nth-of-type(12){--x:35%;--y:80%;--w:6vw;--dl:-6s}
 @media(max-width:760px){
+ .dimg:nth-of-type(n+8){display:none}
  .doors{height:100svh;min-height:560px}
  .names a{font-size:1.2rem}
  .dimg:nth-of-type(1){--x:6%;--y:8%;--w:26vw}
@@ -73,9 +80,10 @@
 
   <section class="doors" id="doors" aria-label="Galleries">
     <nav class="names" id="names">
-      <a href="wall.html" data-cat="wall">Wamz's Wall<span class="ar" aria-hidden="true">↗</span></a>
-      <a href="clothing.html" data-cat="clothing">Clothing Brands<span class="ar" aria-hidden="true">↗</span></a>
-      <a href="events.html" data-cat="events">Events<span class="ar" aria-hidden="true">↗</span></a>
+      <a href="wall.html" data-cat="wall">Wamz's Wall<i class="ar arr" aria-hidden="true"></i></a>
+      <a href="clothing.html" data-cat="clothing">Clothing Brands<i class="ar arr" aria-hidden="true"></i></a>
+      <a href="events.html" data-cat="events">Events<i class="ar arr" aria-hidden="true"></i></a>
+      <a href="campaigns.html" data-cat="campaigns">Campaigns<i class="ar arr" aria-hidden="true"></i></a>
     </nav>
   </section>
 </main>
@@ -91,7 +99,7 @@ const cell = id => `<div class="cell" style="aspect-ratio:${P[id].w}/${P[id].h}"
 function build(){
   let cols;
   if (mq.matches) cols = [[H[0], H[2], H[4], H[6]], [H[1], H[3], H[5]]];       // mobile: two columns, right one sits lower
-  else cols = [[H[3], H[6]], [H[1]], [H[0], H[5]], [H[2]], [H[4]]];            // desktop: five columns, continuing down the page
+  else cols = WAMZ.heroDesk;                                                    // desktop: five columns, longer so they fill the taller canvas
   colsEl.innerHTML = cols.map(c => `<div class="col" data-set>${c.map(cell).join('')}</div>`).join('');
   requestAnimationFrame(() => colsEl.querySelectorAll('.cell').forEach((c, i) => setTimeout(() => c.classList.add('in'), 70 * i)));
 }
@@ -99,8 +107,8 @@ mq.addEventListener('change', build); build();
 
 /* ---- the "doors": 7 vertical photos around three gallery names ---- */
 const doors = document.getElementById('doors'), names = document.getElementById('names');
-const page = c => c === 'wall' ? 'wall.html' : c + '.html';
-names.insertAdjacentHTML('beforebegin', WAMZ.doors.map(([id, cat]) => `<a class="dimg" href="${page(cat)}" data-cat="${cat}" tabindex="-1" aria-hidden="true"><img src="${thumb(id)}" alt="" loading="lazy"></a>`).join(''));
+const page = c => c + '.html';
+names.insertAdjacentHTML('beforebegin', [...WAMZ.doors, ...WAMZ.doorsDesk].map(([id, cat]) => `<a class="dimg" href="${page(cat)}" data-cat="${cat}" tabindex="-1" aria-hidden="true"><img src="${thumb(id)}" alt="" loading="lazy"></a>`).join(''));
 const hov = cat => { doors.classList.toggle('hov', !!cat); names.classList.toggle('hov', !!cat);
   doors.querySelectorAll('[data-cat]').forEach(el => el.classList.toggle('on', el.dataset.cat === cat)); };
 names.querySelectorAll('a').forEach(a => { a.addEventListener('mouseenter', () => hov(a.dataset.cat)); a.addEventListener('focus', () => hov(a.dataset.cat));

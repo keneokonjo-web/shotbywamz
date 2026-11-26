@@ -21,7 +21,7 @@
 <script src="site.js"></script>
 <script>
 const b = WAMZ.brands.find(x => x.n === +new URLSearchParams(location.search).get('b')) || WAMZ.brands[0];
-const t = 'Brand ' + String(b.n).padStart(2, '0');
+const t = b.name;
 document.getElementById('t').textContent = t; document.title = t + ' — Shot by Wamz';
 document.getElementById('mas').innerHTML = b.ids.map(id => fig(id)).join('');
 </script>
